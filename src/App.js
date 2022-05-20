@@ -11,8 +11,10 @@ class App extends Component{
       Person : { 
                 fullName : "Seif",bio : "Content Creator", imgSrc: ProfilePic, profession:"Content Creator in Youtube"
               },
+      count:0
     }
     this.clickHandler = this.clickHandler.bind(this);
+    
   }
   
 
@@ -24,8 +26,15 @@ class App extends Component{
       }
     });
   }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({count:+(this.state.count) + 1})
+    }, 1000)
+  }
+
 
   render(){
+    
     if(this.state.show)
     return (
       <div className="container">
@@ -35,11 +44,14 @@ class App extends Component{
         <h1>{this.state.Person.fullName}</h1>
         <h2>{this.state.Person.bio}</h2>
         <h2>{this.state.Person.profession}</h2>
+        <h1 className='time'>{this.state.count}</h1>
       </div>
       );
       else return (
         <div className="container">
       <button className="btn btn-primary" onClick={this.clickHandler}>Show</button>
+
+
       </div>
       );
   }
